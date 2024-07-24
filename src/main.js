@@ -32,7 +32,7 @@ const torus = new THREE.Mesh( geometry, material );
 scene.add( torus );
 
 var start = new THREE.Vector3(0, 0, 0);
-var end = new THREE.Vector3(1, 0, 0);
+var end = new THREE.Vector3(1, 1, 1);
 const line = new Line(start, end, scene);
 
 // Init Lights //

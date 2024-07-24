@@ -8,7 +8,7 @@ class Line {
 
     async init(start, end, scene) {
         try {
-            this.mesh = await this.loadMesh('https://raw.githubusercontent.com/jbrhm/jbrhm.github.io/63fe28bc13d66bfacaf6946f9ecf8ea73be39e5f/meshes/test.glb');
+            this.mesh = await this.loadMesh('https://raw.githubusercontent.com/jbrhm/jbrhm.github.io/684ed5feeb3923d0b47308e7dbfcfbec0774a1f7/meshes/test.glb');
     
             // Add mesh to the scene
             scene.add(this.mesh);
@@ -21,6 +21,7 @@ class Line {
 
         // This log will happen after the mesh is loaded
         console.log('Mesh has been loaded.');
+        console.log(this.mesh);
     }
 
     loadMesh(url) {
@@ -39,11 +40,23 @@ class Line {
         this.end = end; 
 
         // Calculate length
-        length = (start.sub(end)).length();
+        var length = new Vector3(start.x, start.y, start.z);
+        var dist = (length.sub(end)).length();
 
-        this.mesh.scale.set(1, 1, length * 1);
+        this.mesh.scale.set(1, 1, dist * 1);
 
-        this.mesh.rotation.set()
+        var z = (end.z - start.z) / (end.x - start.x) == NaN ? Math.atan((end.z - start.z) / (end.x - start.x)) : 0;
+        var y = (end.y - start.y) / (end.x - start.x) == NaN ? -Math.atan((end.y - start.y) / (end.x - start.x)) : 0;
+        var x = (end.z - start.z) / (end.y - start.y) == NaN ? Math.atan((end.z - start.z) / (end.y - start.y)) : 0;
+
+        var z = (end.z - start.z) / (end.x - start.x) == Infinity ? Math.atan((end.z - start.z) / (end.x - start.x)) : Math.PI / 2;
+        var y = (end.y - start.y) / (end.x - start.x) == Infinity ? -Math.atan((end.y - start.y) / (end.x - start.x)) : Math.PI / 2;
+        var x = (end.z - start.z) / (end.y - start.y) == Infinity ? Math.atan((end.z - start.z) / (end.y - start.y)) : Math.PI / 2;
+
+
+        this.mesh.rotation.set(x, y, -(Math.PI * 90)/180 + z);
+
+        this.mesh.position.set(start.x, start.y, start.z);
     }
 }
 
