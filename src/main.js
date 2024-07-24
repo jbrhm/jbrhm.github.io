@@ -41,7 +41,7 @@ var zScale = 1.0;
 
 var testMesh;
 
-loader.load( '//raw.githubusercontent.com/jbrhm/jbrhm.github.io/blob/main/meshes/test.glb', function ( gltf ) {
+loader.load( 'https://raw.githubusercontent.com/jbrhm/jbrhm.github.io/63fe28bc13d66bfacaf6946f9ecf8ea73be39e5f/meshes/test.glb', function ( gltf ) {
 
 	testMesh = gltf.scene;
 
