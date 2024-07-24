@@ -54,7 +54,7 @@ class Line {
         // Assuming you have a mesh object
         this.mesh.position.set(start.x, start.y, start.z);
 
-        this.mesh.scale.set(1, 1, 2);
+        this.mesh.scale.set(1, 1, 1);
 
         this.mesh.lookAt(end);
     }

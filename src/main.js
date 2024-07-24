@@ -29,10 +29,14 @@ scene.add(axesHelper);
 
 // Init Geometery //
 
-var start = new THREE.Vector3(0, 1, 0);
+var start = new THREE.Vector3(0, 0, 0);
 var end = new THREE.Vector3(0, 0, 0);
 var angle = 0;
 const line = new Line(start, end, scene);
+
+var start2 = new THREE.Vector3(10, 0, 0);
+const line2 = new Line(start2, end, scene);
+
 
 // Init Lights //
 
@@ -48,10 +52,11 @@ function animate() {
 	requestAnimationFrame( animate );
 
 	angle += 0.01;
-	end.x = Math.cos(angle);
-	end.y = Math.sin(angle);
+	end.x = 10*Math.cos(angle);
+	end.y = 10*Math.sin(angle);
 
 	line.setEndpoints(start, end);
+	line2.setEndpoints(start2, end);
 
 	controls.update();
 
