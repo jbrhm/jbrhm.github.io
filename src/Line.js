@@ -41,20 +41,33 @@ class Line {
 
         // Calculate length
         var length = new Vector3(start.x, start.y, start.z);
-        var dist = (length.sub(end)).length();
+        var dist = (length.sub(end)).length() - 1;
 
-        this.mesh.scale.set(1, 1, dist * 1);
+        var z = Math.atan((end.z - start.z) / (end.x - start.x));
+        var y = -Math.atan((end.y - start.y) / (end.x - start.x));
+        var x = Math.atan((end.z - start.z) / (end.y - start.y));
 
-        var z = (end.z - start.z) / (end.x - start.x) == NaN ? Math.atan((end.z - start.z) / (end.x - start.x)) : 0;
-        var y = (end.y - start.y) / (end.x - start.x) == NaN ? -Math.atan((end.y - start.y) / (end.x - start.x)) : 0;
-        var x = (end.z - start.z) / (end.y - start.y) == NaN ? Math.atan((end.z - start.z) / (end.y - start.y)) : 0;
+        if(isNaN(z)){
+            z = 0;
+        }else if(!isFinite(z)){
+            z = Math.PI/2;
+        }
 
-        var z = (end.z - start.z) / (end.x - start.x) == Infinity ? Math.atan((end.z - start.z) / (end.x - start.x)) : Math.PI / 2;
-        var y = (end.y - start.y) / (end.x - start.x) == Infinity ? -Math.atan((end.y - start.y) / (end.x - start.x)) : Math.PI / 2;
-        var x = (end.z - start.z) / (end.y - start.y) == Infinity ? Math.atan((end.z - start.z) / (end.y - start.y)) : Math.PI / 2;
+        if(isNaN(y)){
+            y = 0;
+        }else if(!isFinite(y)){
+            y = Math.PI/2;
+        }
 
+        if(isNaN(x)){
+            x = 0;
+        }else if(!isFinite(x)){
+            x = Math.PI/2;
+        }
 
-        this.mesh.rotation.set(x, y, -(Math.PI * 90)/180 + z);
+        this.mesh.scale.set(1 + dist * Math.cos(x), 1 + dist * Math.cos(y), 1 + dist * Math.cos(z));
+
+        this.mesh.rotation.set(0, y, -(Math.PI * 90)/180 + z);
 
         this.mesh.position.set(start.x, start.y, start.z);
     }
