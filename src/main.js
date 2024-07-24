@@ -1,10 +1,12 @@
 import './style.css'
 
+// My code
+import Line from './Line.js'
+
 import * as THREE from 'three';
 
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
 
-import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 
 // Init Scene //
 const scene = new THREE.Scene();
@@ -29,39 +31,19 @@ const torus = new THREE.Mesh( geometry, material );
 
 scene.add( torus );
 
-// Load Assets
-
-const loader = new GLTFLoader();
-
-var numPipes = 4;
-
-var xScale = 1.0;
-var yScale = 1.0;
-var zScale = 1.0;
-
-var testMesh;
-
-loader.load( 'https://raw.githubusercontent.com/jbrhm/jbrhm.github.io/63fe28bc13d66bfacaf6946f9ecf8ea73be39e5f/meshes/test.glb', function ( gltf ) {
-
-	testMesh = gltf.scene;
-
-	scene.add( testMesh );
-
-}, undefined, function ( error ) {
-
-	console.error( error );
-
-} );
+var start = new THREE.Vector3(0, 0, 0);
+var end = new THREE.Vector3(1, 0, 0);
+const line = new Line(start, end, scene);
 
 // Init Lights //
 
-const pointLight = new THREE.PointLight(0xffffff);
-pointLight.position.set(5, 5, 5);
+const pointLight = new THREE.PointLight( 0xffffff );
+pointLight.position.set( 5, 5, 5 );
 
-const ambientLight = new THREE.AmbientLight(0xffffff);
-scene.add(pointLight, ambientLight);
+const ambientLight = new THREE.AmbientLight( 0xffffff );
+scene.add( pointLight, ambientLight );
 
-const controls = new OrbitControls(camera, renderer.domElement);
+const controls = new OrbitControls( camera, renderer.domElement );
 
 function animate() {
 	requestAnimationFrame( animate );
@@ -69,10 +51,6 @@ function animate() {
 	torus.rotation.x += 0.01;
 	torus.rotation.y += 0.005;
 	torus.rotation.z += 0.01;
-
-	yScale += 0.01;
-
-	testMesh.scale.set(xScale, yScale, zScale);
 
 	controls.update();
 
