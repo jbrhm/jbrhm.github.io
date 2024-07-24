@@ -20,7 +20,7 @@ class Line {
 
     async init(start, end, scene) {
         try {
-            this.mesh = await this.loadMesh('https://raw.githubusercontent.com/jbrhm/jbrhm.github.io/684ed5feeb3923d0b47308e7dbfcfbec0774a1f7/meshes/test.glb');
+            this.mesh = await this.loadMesh('https://raw.githubusercontent.com/jbrhm/jbrhm.github.io/4fbce5ed3a4bd7fe8e463ce671da1f676e46b65e/meshes/test.glb');
     
             // Add mesh to the scene
             scene.add(this.mesh);
