@@ -33,6 +33,8 @@ scene.add( torus );
 
 const loader = new GLTFLoader();
 
+var numPipes = 4;
+
 var xScale = 1.0;
 var yScale = 1.0;
 var zScale = 1.0;
