@@ -29,7 +29,7 @@ scene.add(axesHelper);
 
 // Init Geometery //
 
-var start = new THREE.Vector3(0, 0, 0);
+var start = new THREE.Vector3(0, 1, 0);
 var end = new THREE.Vector3(0, 0, 0);
 var angle = 0;
 const line = new Line(start, end, scene);
