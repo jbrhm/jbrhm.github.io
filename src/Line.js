@@ -1,6 +1,18 @@
 import { Vector3, } from "three";
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 
+function coordinatesToAngle(x, y) {
+    // Use the Math.atan2 function to get the angle in radians
+    let angle = Math.atan2(y, x);
+
+    // atan2 returns values between -π and π, convert it to 0 to 2π
+    if (angle < 0) {
+        angle += 2 * Math.PI;
+    }
+
+    return angle;
+}
+
 class Line {
     constructor(start, end, scene) { 
         this.init(start, end, scene);
@@ -39,37 +51,12 @@ class Line {
         this.start = start;
         this.end = end; 
 
-        // Calculate length
-        var length = new Vector3(start.x, start.y, start.z);
-        var dist = (length.sub(end)).length() - 1;
-
-        var z = Math.atan((end.z - start.z) / (end.x - start.x));
-        var y = -Math.atan((end.y - start.y) / (end.x - start.x));
-        var x = Math.atan((end.z - start.z) / (end.y - start.y));
-
-        if(isNaN(z)){
-            z = 0;
-        }else if(!isFinite(z)){
-            z = Math.PI/2;
-        }
-
-        if(isNaN(y)){
-            y = 0;
-        }else if(!isFinite(y)){
-            y = Math.PI/2;
-        }
-
-        if(isNaN(x)){
-            x = 0;
-        }else if(!isFinite(x)){
-            x = Math.PI/2;
-        }
-
-        this.mesh.scale.set(1 + dist * Math.cos(x), 1 + dist * Math.cos(y), 1 + dist * Math.cos(z));
-
-        this.mesh.rotation.set(0, y, -(Math.PI * 90)/180 + z);
-
+        // Assuming you have a mesh object
         this.mesh.position.set(start.x, start.y, start.z);
+
+        this.mesh.scale.set(1, 2, 1);
+
+        this.mesh.lookAt(end);
     }
 }
 

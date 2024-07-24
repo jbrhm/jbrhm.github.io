@@ -23,16 +23,15 @@ camera.position.setZ( 30 );
 
 renderer.render( scene, camera );
 
+// Helpers //
+const axesHelper = new THREE.AxesHelper(5);
+scene.add(axesHelper);
+
 // Init Geometery //
 
-const geometry = new THREE.TorusGeometry( 10, 3, 16, 100 )
-const material = new THREE.MeshStandardMaterial({ color: 0xFF6347 });
-const torus = new THREE.Mesh( geometry, material );
-
-scene.add( torus );
-
 var start = new THREE.Vector3(0, 0, 0);
-var end = new THREE.Vector3(1, 1, 1);
+var end = new THREE.Vector3(0, 0, 0);
+var angle = 0;
 const line = new Line(start, end, scene);
 
 // Init Lights //
@@ -47,10 +46,12 @@ const controls = new OrbitControls( camera, renderer.domElement );
 
 function animate() {
 	requestAnimationFrame( animate );
-	
-	torus.rotation.x += 0.01;
-	torus.rotation.y += 0.005;
-	torus.rotation.z += 0.01;
+
+	angle += 0.01;
+	end.x = Math.cos(angle);
+	end.y = Math.sin(angle);
+
+	line.setEndpoints(start, end);
 
 	controls.update();
 
