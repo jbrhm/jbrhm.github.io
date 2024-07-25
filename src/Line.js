@@ -30,10 +30,6 @@ class Line {
         } catch (error) {
             console.error(error);
         }
-
-        // This log will happen after the mesh is loaded
-        console.log('Mesh has been loaded.');
-        console.log(this.mesh);
     }
 
     loadMesh(url) {
