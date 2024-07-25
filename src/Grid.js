@@ -24,6 +24,7 @@ class Grid {
 	constructor(height, width, origin, scene){
 		this.height = height;
 		this.width = width;
+		this.origin = origin;
 		
 		this.grid = new Map();
 
@@ -31,15 +32,15 @@ class Grid {
 		for(let row = 0; row < height; row++){
 			for(let col = 0; col < width; col++){
 				// Start and end points
-				var start = new Vector3(10 * col + origin.x, 0, 10 * row + origin.y);
+				var start = new Vector3(10 * col + origin.x, 0, 10 * row + origin.z);
 
 				{
-					var end = new Vector3(10 * col + origin.x + 10, 0, 10 * row + origin.y);
+					var end = new Vector3(10 * col + origin.x + 10, 0, 10 * row + origin.z);
 					this.grid.set(JSON.stringify([start.x, start.z, end.x, end.z]), new Line(start, end, scene));
 				}
 
 				{
-					var end = new Vector3(10 * col + origin.x, 0, 10 * row + origin.y + 10);
+					var end = new Vector3(10 * col + origin.x, 0, 10 * row + origin.z + 10);
 					this.grid.set(JSON.stringify([start.x, start.z, end.x, end.z]), new Line(start, end, scene));
 				}
 			}
@@ -47,15 +48,15 @@ class Grid {
 
 		// Add the height edge
 		for(let row = 0; row < height; row++){
-			var start = new Vector3(10 * width + origin.x, 0, 10 * row + origin.y);
-			var end = new Vector3(10 * width + origin.x, 0, 10 * row + origin.y + 10);
+			var start = new Vector3(10 * width + origin.x, 0, 10 * row + origin.z);
+			var end = new Vector3(10 * width + origin.x, 0, 10 * row + origin.z + 10);
 			this.grid.set(JSON.stringify([start.x, start.z, end.x, end.z]), new Line(start, end, scene));
 		}
 
 		// Add the height edge
 		for(let col = 0; col < width; col++){
-			var start = new Vector3(10 * col + origin.x, 0, 10 * height + origin.y);
-			var end = new Vector3(10 * col + origin.x + 10, 0, 10 * height + origin.y);
+			var start = new Vector3(10 * col + origin.x, 0, 10 * height + origin.z);
+			var end = new Vector3(10 * col + origin.x + 10, 0, 10 * height + origin.z);
 			this.grid.set(JSON.stringify([start.x, start.z, end.x, end.z]), new Line(start, end, scene));
 		}
 
@@ -67,7 +68,7 @@ class Grid {
 		for(let row = 0; row <= this.height; row++){
 			for(let col = 0; col <= this.width; col++){
 				// Randomize the seed time for the point
-				var initTime = getRandomFloat(0, 2 * Math.Pi);
+				var initTime = getRandomFloat(0, 2 * Math.PI);
 
 				this.points.set(JSON.stringify([col, row]), new Point(col, row, initTime));
 			}
@@ -126,13 +127,17 @@ class Grid {
 			return ((Math.cos(x)) ** 2) * 3 * ((Math.sin(2 * x) ** 2) + 2 * (Math.cos(Math.PI * x)) ** 2);
 		}
 
+		function scale(x){
+			return 2 ** (-x+2);
+		}
+
 
 		for(let row = 0; row <= this.height; row++){
 			for(let col = 0; col <= this.width; col++){
 				if(this.points.has(JSON.stringify([col, row]))){
 					var point = this.points.get(JSON.stringify([col, row]));
 
-					this.updateHeight(new Vector3(10 * col, 0, 10 * row), curve(point.getInitTime() + time));
+					this.updateHeight(new Vector3(10 * col + this.origin.x, 0, 10 * row + this.origin.z), scale(row)  * curve(point.getInitTime() + time));
 				}
 			}
 		}	

@@ -20,7 +20,7 @@ const renderer = new THREE.WebGLRenderer({
 
 renderer.setPixelRatio( window.devicePixelRatio );
 renderer.setSize( window.innerWidth, window.innerHeight );
-camera.position.setZ( 30 );
+camera.position.set(0, 10, 75);
 
 renderer.render( scene, camera );
 
@@ -31,7 +31,7 @@ scene.add(axesHelper);
 // Init Geometery //
 
 var time = 0;
-var grid = new Grid(3, 10, new THREE.Vector3(0,0,0), scene);
+var grid = new Grid(20, 20, new THREE.Vector3(-100,0,0), scene);
 
 // Init Lights //
 
