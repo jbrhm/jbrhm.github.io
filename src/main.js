@@ -30,6 +30,7 @@ scene.add(axesHelper);
 
 // Init Geometery //
 
+var time = 0;
 var grid = new Grid(3, 10, new THREE.Vector3(0,0,0), scene);
 
 // Init Lights //
@@ -45,7 +46,8 @@ const controls = new OrbitControls( camera, renderer.domElement );
 function animate() {
 	requestAnimationFrame( animate );
 
-	grid.updateRandom();
+	time += 0.01;
+	grid.updateRandom(time);
 
 	controls.update();
 

@@ -1,5 +1,6 @@
 import { Vector3, } from "three";
 import Line from "./Line";
+import Point from "./Point";
 
 function getRandomInt(max) {
 	if(max == 0){
@@ -57,6 +58,20 @@ class Grid {
 			var end = new Vector3(10 * col + origin.x + 10, 0, 10 * height + origin.y);
 			this.grid.set(JSON.stringify([start.x, start.z, end.x, end.z]), new Line(start, end, scene));
 		}
+
+		// Create the grid of points
+		// we use <= because there is one more point in every direction that grid box
+
+		this.points = new Map();
+
+		for(let row = 0; row <= this.height; row++){
+			for(let col = 0; col <= this.width; col++){
+				// Randomize the seed time for the point
+				var initTime = getRandomFloat(0, 2 * Math.Pi);
+
+				this.points.set(JSON.stringify([col, row]), new Point(col, row, initTime));
+			}
+		}
 	}
 
 	// location is Vector3
@@ -105,27 +120,22 @@ class Grid {
 		}
 	}
 
-	updateRandom(){
-		if(this.grid != undefined){
-			var numberPointsToUpdate = getRandomInt((this.height) * (this.width - 1));
-			for(let i = 0; i < numberPointsToUpdate; i++){
-				// Generate a random non front edge point
-				var point = new Vector3(getRandomInt(this.width + 1) * 10, 0, getRandomInt(this.height) * 10)
+	updateRandom(time){
 
-				const str = JSON.stringify([point.x, point.z, point.x, point.z + 10])
+		function curve(x){
+			return ((Math.cos(x)) ** 2) * 3 * ((Math.sin(2 * x) ** 2) + 2 * (Math.cos(Math.PI * x)) ** 2);
+		}
 
-				if(this.grid.has(str)){
-					var height = this.grid.get(str).getStart().y + MOVING_RATE * getRandomFloat(-0.1, 0.1);
 
-					// Clamp
-					height = Math.min(...[MAX_HEIGHT, height]);
-					height = Math.max(...[MIN_HEIGHT, height]);
+		for(let row = 0; row <= this.height; row++){
+			for(let col = 0; col <= this.width; col++){
+				if(this.points.has(JSON.stringify([col, row]))){
+					var point = this.points.get(JSON.stringify([col, row]));
 
-					this.updateHeight(point, height);
+					this.updateHeight(new Vector3(10 * col, 0, 10 * row), curve(point.getInitTime() + time));
 				}
 			}
-		}
-		
+		}	
 	}
 }
 
