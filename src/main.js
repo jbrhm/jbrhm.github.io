@@ -20,7 +20,8 @@ const renderer = new THREE.WebGLRenderer({
 
 renderer.setPixelRatio( window.devicePixelRatio );
 renderer.setSize( window.innerWidth, window.innerHeight );
-camera.position.set(0, 10, 75);
+camera.position.set(0, 4, 75);
+camera.rotation.set(Math.PI/20, 0, 0);
 
 renderer.render( scene, camera );
 
@@ -41,7 +42,27 @@ pointLight.position.set( 5, 5, 5 );
 const ambientLight = new THREE.AmbientLight( 0xffffff );
 scene.add( pointLight, ambientLight );
 
-const controls = new OrbitControls( camera, renderer.domElement );
+//const controls = new OrbitControls( camera, renderer.domElement );
+
+// Scrolling //
+
+function moveCamera() {
+	const t = document.body.getBoundingClientRect().top;
+	if(Math.abs(t) < 2000){
+		camera.position.z = -1 * Math.abs(t/250) ** 2 + 75;
+		camera.position.y = 0.1 * 1.003 ** Math.abs(t) + 2;
+
+		camera.rotation.x = 0.4 * Math.abs(t/1000) ** 2 + Math.PI/20;
+	}
+
+	console.log(t);
+}
+
+document.addEventListener('DOMContentLoaded', (event) => {
+    document.body.onscroll = moveCamera;
+});
+
+// Animation //
 
 function animate() {
 	requestAnimationFrame( animate );
@@ -49,9 +70,8 @@ function animate() {
 	time += 0.01;
 	grid.updateRandom(time);
 
-	controls.update();
-
 	renderer.render( scene, camera );
 }
 
 animate();
+
