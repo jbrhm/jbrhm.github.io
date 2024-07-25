@@ -89,7 +89,7 @@ class Grid {
 			var start = new Vector3(location.x, location.y, location.z - 10);
 			var end = new Vector3(location.x, height, location.z);
 			if(this.grid.has(JSON.stringify([start.x, start.z, end.x, end.z]))){
-				var line = this.grid.get(JSON.stringify([end.x, end.z]));
+				var line = this.grid.get(JSON.stringify([start.x, start.z, end.x, end.z]));
 				line.setEndpoints(line.getStart(), end);
 			}
 		}
@@ -111,12 +111,11 @@ class Grid {
 			for(let i = 0; i < numberPointsToUpdate; i++){
 				// Generate a random non front edge point
 				var point = new Vector3(getRandomInt(this.width + 1) * 10, 0, getRandomInt(this.height) * 10)
-				if(this.grid.has(JSON.stringify([point.x, point.z, point.x, point.z + 10]))){
-					var height = this.grid.get(JSON.stringify([point.x, point.z, point.x, point.z + 10])).getStart().y + MOVING_RATE * getRandomFloat(-0.1, 0.1);
-					
-					if(height == NaN){
-						console.log("bruh");
-					}
+
+				const str = JSON.stringify([point.x, point.z, point.x, point.z + 10])
+
+				if(this.grid.has(str)){
+					var height = this.grid.get(str).getStart().y + MOVING_RATE * getRandomFloat(-0.1, 0.1);
 
 					// Clamp
 					height = Math.min(...[MAX_HEIGHT, height]);

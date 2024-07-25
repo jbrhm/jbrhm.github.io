@@ -30,7 +30,7 @@ scene.add(axesHelper);
 
 // Init Geometery //
 
-var grid = new Grid(1, 4, new THREE.Vector3(0,0,0), scene);
+var grid = new Grid(3, 10, new THREE.Vector3(0,0,0), scene);
 
 // Init Lights //
 
