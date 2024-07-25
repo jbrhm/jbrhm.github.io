@@ -2,6 +2,7 @@ import './style.css'
 
 // My code
 import Line from './Line.js'
+import Grid from './Grid.js'
 
 import * as THREE from 'three';
 
@@ -29,14 +30,7 @@ scene.add(axesHelper);
 
 // Init Geometery //
 
-var start = new THREE.Vector3(0, 0, 0);
-var end = new THREE.Vector3(0, 0, 0);
-var angle = 0;
-const line = new Line(start, end, scene);
-
-var start2 = new THREE.Vector3(10, 0, 0);
-const line2 = new Line(start2, end, scene);
-
+var grid = new Grid(1, 4, new THREE.Vector3(0,0,0), scene);
 
 // Init Lights //
 
@@ -50,13 +44,6 @@ const controls = new OrbitControls( camera, renderer.domElement );
 
 function animate() {
 	requestAnimationFrame( animate );
-
-	angle += 0.01;
-	end.x = 10*Math.cos(angle);
-	end.y = 10*Math.sin(angle);
-
-	line.setEndpoints(start, end);
-	line2.setEndpoints(start2, end);
 
 	controls.update();
 
