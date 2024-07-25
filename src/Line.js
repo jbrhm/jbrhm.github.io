@@ -54,9 +54,20 @@ class Line {
         // Assuming you have a mesh object
         this.mesh.position.set(start.x, start.y, start.z);
 
-        this.mesh.scale.set(1, 1, 1);
+        var length = new Vector3(start.x, start.y, start.z);
+        var dist = (length.sub(end)).length();
+
+        this.mesh.getObjectByName('Cylinder').scale.set(.25, -(5 + (dist - 10)/2), .25);
 
         this.mesh.lookAt(end);
+    }
+
+    getStart(){
+        return this.start;
+    }
+
+    getEnd(){
+        return this.end;
     }
 }
 

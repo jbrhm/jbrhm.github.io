@@ -16,12 +16,12 @@ class Grid {
 
 				{
 					var end = new Vector3(10 * col + origin.x + 10, 0, 10 * row + origin.y);
-					this.grid.set([start.x, start.z, end.x, end.z], new Line(start, end, scene));
+					this.grid.set(JSON.stringify([start.x, start.z, end.x, end.z]), new Line(start, end, scene));
 				}
 
 				{
 					var end = new Vector3(10 * col + origin.x, 0, 10 * row + origin.y + 10);
-					this.grid.set([start.x, start.z, end.x, end.z], new Line(start, end, scene));
+					this.grid.set(JSON.stringify([start.x, start.z, end.x, end.z]), new Line(start, end, scene));
 				}
 			}
 		}
@@ -30,14 +30,60 @@ class Grid {
 		for(let row = 0; row < height; row++){
 			var start = new Vector3(10 * width + origin.x, 0, 10 * row + origin.y);
 			var end = new Vector3(10 * width + origin.x, 0, 10 * row + origin.y + 10);
-			this.grid.set([start.x, start.z, end.x, end.z], new Line(start, end, scene));
+			this.grid.set(JSON.stringify([start.x, start.z, end.x, end.z]), new Line(start, end, scene));
 		}
 
 		// Add the height edge
 		for(let col = 0; col < width; col++){
 			var start = new Vector3(10 * col + origin.x, 0, 10 * height + origin.y);
 			var end = new Vector3(10 * col + origin.x + 10, 0, 10 * height + origin.y);
-			this.grid.set([start.x, start.z, end.x, end.z], new Line(start, end, scene));
+			this.grid.set(JSON.stringify([start.x, start.z, end.x, end.z]), new Line(start, end, scene));
+		}
+	}
+
+	// location is Vector3
+	// height is double
+	updateHeight(location, height) {
+		var start = new Vector3(location.x, location.y, location.z);
+
+		// right
+		{
+			var end = new Vector3(location.x + 10, location.y, location.z);
+			if(this.grid.has(JSON.stringify([start.x, start.z, end.x, end.z]))){
+				var line = this.grid.get(JSON.stringify([start.x, start.z, end.x, end.z]));
+				start.y = height;
+				line.setEndpoints(start, line.getEnd());
+			}
+		}
+
+		// down
+		{
+			var end = new Vector3(location.x, location.y, location.z + 10);
+			if(this.grid.has(JSON.stringify([start.x, start.z, end.x, end.z]))){
+				var line = this.grid.get(JSON.stringify([start.x, start.z, end.x, end.z]));
+				start.y = height;
+				line.setEndpoints(start, line.getEnd());
+			}
+		}
+
+		// up
+		{
+			var start = new Vector3(location.x, location.y, location.z - 10);
+			var end = new Vector3(location.x, height, location.z);
+			if(this.grid.has(JSON.stringify([start.x, start.z, end.x, end.z]))){
+				var line = this.grid.get(JSON.stringify([end.x, end.z]));
+				line.setEndpoints(line.getStart(), end);
+			}
+		}
+
+		// left
+		{
+			var start = new Vector3(location.x - 10, location.y, location.z);
+			var end = new Vector3(location.x, height, location.z);
+			if(this.grid.has(JSON.stringify([start.x, start.z, end.x, end.z]))){
+				var line = this.grid.get(JSON.stringify([end.x, end.z]));
+				line.setEndpoints(line.getStart(), end);
+			}
 		}
 	}
 }
