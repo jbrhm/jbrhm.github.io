@@ -30,8 +30,6 @@ scene.add(axesHelper);
 
 // Init Geometery //
 
-var height = 0;
-var location = new THREE.Vector3(0, 0, 0);
 var grid = new Grid(1, 4, new THREE.Vector3(0,0,0), scene);
 
 // Init Lights //
@@ -47,8 +45,7 @@ const controls = new OrbitControls( camera, renderer.domElement );
 function animate() {
 	requestAnimationFrame( animate );
 
-	height += 0.1;
-	grid.updateHeight(location, height);
+	grid.updateRandom();
 
 	controls.update();
 
