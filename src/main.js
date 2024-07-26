@@ -60,7 +60,7 @@ loader.load('https://raw.githubusercontent.com/jbrhm/jbrhm.github.io/f3295a4b63b
 	reject(error);
 });
 
-const moonTexture = new THREE.TextureLoader().load('https://raw.githubusercontent.com/jbrhm/jbrhm.github.io/685cbb8086e34b1fbba2c88cd50517b5ccc5e44f/resources/mars.jpeg');
+const moonTexture = new THREE.TextureLoader().load('./resources/mars2.jpg');//('https://raw.githubusercontent.com/jbrhm/jbrhm.github.io/685cbb8086e34b1fbba2c88cd50517b5ccc5e44f/resources/mars.jpeg');
 const normalTexture = new THREE.TextureLoader().load('https://raw.githubusercontent.com/jbrhm/jbrhm.github.io/685cbb8086e34b1fbba2c88cd50517b5ccc5e44f/resources/normal.jpg');
 
 const moon = new THREE.Mesh(
@@ -78,7 +78,7 @@ moon.scale.set(5, 5, 5);
 
 // Init Lights //
 
-const pointLight = new THREE.PointLight( 0x8f2f06, 1000, 1000 );
+const pointLight = new THREE.PointLight( 0x8f2f06, 1000, 2000 );
 pointLight.position.set(0, 65, 30);
 
 const lightHelper =  new THREE.PointLightHelper(pointLight);
