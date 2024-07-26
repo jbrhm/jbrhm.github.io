@@ -110,7 +110,7 @@ function moveCamera() {
 		moon.position.set(200 * ((t-1500)/500) - 225, 75, 10);
 	}else if(t > 2000 && t < 3000){
 		moon.position.set(-25, 75, 10);
-		moon.rotation.set(0, 0, (t - 2000) / 300)
+		moon.rotation.set(2*Math.PI/4, (t - 2000) / 300, 0)
 	}
 
 	// Rover Scrol Movement
