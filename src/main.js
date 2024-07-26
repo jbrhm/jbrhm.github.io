@@ -48,8 +48,8 @@ loader.load('https://raw.githubusercontent.com/jbrhm/jbrhm.github.io/e1d057416af
 	reject(error);
 });
 
-const moonTexture = new THREE.TextureLoader().load('resources/mars.jpeg');
-const normalTexture = new THREE.TextureLoader().load('resources/normal.jpg');
+const moonTexture = new THREE.TextureLoader().load('https://raw.githubusercontent.com/jbrhm/jbrhm.github.io/685cbb8086e34b1fbba2c88cd50517b5ccc5e44f/resources/mars.jpeg');
+const normalTexture = new THREE.TextureLoader().load('https://raw.githubusercontent.com/jbrhm/jbrhm.github.io/685cbb8086e34b1fbba2c88cd50517b5ccc5e44f/resources/normal.jpg');
 
 const moon = new THREE.Mesh(
   new THREE.SphereGeometry(3, 32, 32),
