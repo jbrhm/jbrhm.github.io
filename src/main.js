@@ -34,16 +34,28 @@ scene.add(axesHelper);
 // Init Geometery //
 
 var time = 0;
+const loader = new GLTFLoader();
+
 var grid = new Grid(20, 20, new THREE.Vector3(-100,0,0), scene);
 
 var portfolioTitle;
-const loader = new GLTFLoader();
 loader.load('https://raw.githubusercontent.com/jbrhm/jbrhm.github.io/e1d057416af091949c4be01412eead7bff658cf7/meshes/text.glb', (gltf) => {
 	portfolioTitle = gltf.scene;
 	scene.add(portfolioTitle);
 	portfolioTitle.position.set(-75, 20, 10);
 	portfolioTitle.rotation.set(Math.PI / 2 + 0.05, 0, 0);
 	portfolioTitle.scale.set(25, 1, 25);
+}, undefined, (error) => {
+	reject(error);
+});
+
+var rover;
+loader.load('https://raw.githubusercontent.com/jbrhm/jbrhm.github.io/e1d057416af091949c4be01412eead7bff658cf7/meshes/text.glb', (gltf) => {
+	rover = gltf.scene;
+	scene.add(rover);
+	rover.position.set(-75, 20, 10);
+	rover.rotation.set(Math.PI / 2 + 0.05, 0, 0);
+	rover.scale.set(25, 1, 25);
 }, undefined, (error) => {
 	reject(error);
 });
