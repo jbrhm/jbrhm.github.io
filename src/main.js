@@ -50,12 +50,12 @@ loader.load('https://raw.githubusercontent.com/jbrhm/jbrhm.github.io/e1d057416af
 });
 
 var rover;
-loader.load('https://raw.githubusercontent.com/jbrhm/jbrhm.github.io/e1d057416af091949c4be01412eead7bff658cf7/meshes/text.glb', (gltf) => {
+loader.load('https://raw.githubusercontent.com/jbrhm/jbrhm.github.io/f3295a4b63b7c7707989c028444046bfb30deea3/meshes/rover.glb', (gltf) => {
 	rover = gltf.scene;
 	scene.add(rover);
-	rover.position.set(-75, 20, 10);
+	rover.position.set(-90, 30, 20);
 	rover.rotation.set(Math.PI / 2 + 0.05, 0, 0);
-	rover.scale.set(25, 1, 25);
+	rover.scale.set(7, 7, 7);
 }, undefined, (error) => {
 	reject(error);
 });
@@ -111,6 +111,14 @@ function moveCamera() {
 	}else if(t > 2000 && t < 3000){
 		moon.position.set(-25, 75, 10);
 		moon.rotation.set(0, 0, (t - 2000) / 300)
+	}
+
+	// Rover Scrol Movement
+	if(t > 1500 && t < 2000){
+		rover.position.set(200 * ((t-1500)/500) - 215, 70, 20);
+	}else if(t > 2000 && t < 3000){
+		rover.position.set(-15, 70, 20);
+		rover.rotation.set(3*Math.PI/4, -3*Math.PI/4, Math.PI/4);
 	}
 
 	console.log(t);
