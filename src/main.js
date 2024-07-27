@@ -110,15 +110,13 @@ function moveCamera() {
 		moon.position.set(200 * ((t-1500)/500) - 225, 75, 10);
 	}else if(t > 2000 && t < 3000){
 		moon.position.set(-25, 75, 10);
-		moon.rotation.set(2*Math.PI/4, (t - 2000) / 300, 0)
 	}
 
 	// Rover Scrol Movement
 	if(t > 1500 && t < 2000){
 		rover.position.set(200 * ((t-1500)/500) - 215, 70, 20);
 	}else if(t > 2000 && t < 3000){
-		rover.position.set(-15, 70, 20);
-		rover.rotation.set(3*Math.PI/4, -3*Math.PI/4, Math.PI/4);
+		rover.position.set(-15 + 1 * Math.sin(time), 70 + 1 * Math.sin(time), 20);
 	}
 
 	console.log(t);
@@ -134,6 +132,23 @@ function animate() {
 
 	time += 0.01;
 	grid.updateRandom(time);
+
+	// Mars Animation
+
+	moon.rotation.set(2*Math.PI/4, time, 0)
+
+	// Rover Animation
+
+	rover.getObjectByName('front_right_wheel').rotation.set(0, 4 * time, 0);
+	rover.getObjectByName('center_right_wheel').rotation.set(0, 4 * time, 0);
+	rover.getObjectByName('back_right_wheel').rotation.set(0, 4 * time, 0);
+	rover.getObjectByName('front_left_wheel').rotation.set(0, 4 * time, 0);
+	rover.getObjectByName('center_left_wheel').rotation.set(0, 4 * time, 0);
+	rover.getObjectByName('back_left_wheel').rotation.set(0, 4 * time, 0);
+
+	rover.rotation.set(3*Math.PI/4 + 0.2 * Math.sin(time), -3*Math.PI/4, Math.PI/4 + 0.2 * Math.sin(time));
+
+	// Render Call
 
 	renderer.render( scene, camera );
 }
