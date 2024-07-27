@@ -87,9 +87,11 @@ scene.add(lightHelper);
 const ambientLight = new THREE.AmbientLight( 0xffffff, 1 );
 scene.add( pointLight, ambientLight );
 
-// Scrolling //
+// Animation //
 
-function moveCamera() {
+function animate() {
+	requestAnimationFrame( animate );
+
 	const t = Math.abs(document.body.getBoundingClientRect().top);
 
 	// Camera Scroll Movement
@@ -114,21 +116,10 @@ function moveCamera() {
 
 	// Rover Scrol Movement
 	if(t > 1500 && t < 2000){
-		rover.position.set(200 * ((t-1500)/500) - 215, 70, 20);
+		rover.position.set(200 * ((t-1500)/500) - 217, 70, 21);
 	}else if(t > 2000 && t < 3000){
-		rover.position.set(-15 + 1 * Math.sin(time), 70 + 1 * Math.sin(time), 20);
+		rover.position.set(-17 + 0.5 * Math.sin(time), 70 + 1 * Math.sin(time), 21);
 	}
-
-	console.log(t);
-}
-
-document.body.onscroll = moveCamera;
-
-
-// Animation //
-
-function animate() {
-	requestAnimationFrame( animate );
 
 	time += 0.01;
 	grid.updateRandom(time);
@@ -139,14 +130,14 @@ function animate() {
 
 	// Rover Animation
 
-	rover.getObjectByName('front_right_wheel').rotation.set(0, 4 * time, 0);
-	rover.getObjectByName('center_right_wheel').rotation.set(0, 4 * time, 0);
-	rover.getObjectByName('back_right_wheel').rotation.set(0, 4 * time, 0);
-	rover.getObjectByName('front_left_wheel').rotation.set(0, 4 * time, 0);
-	rover.getObjectByName('center_left_wheel').rotation.set(0, 4 * time, 0);
-	rover.getObjectByName('back_left_wheel').rotation.set(0, 4 * time, 0);
+	rover.getObjectByName('front_right_wheel').rotation.set(0, 5 * time, 0);
+	rover.getObjectByName('center_right_wheel').rotation.set(0, 5 * time, 0);
+	rover.getObjectByName('back_right_wheel').rotation.set(0, 5 * time, 0);
+	rover.getObjectByName('front_left_wheel').rotation.set(0, 5 * time, 0);
+	rover.getObjectByName('center_left_wheel').rotation.set(0, 5 * time, 0);
+	rover.getObjectByName('back_left_wheel').rotation.set(0, 5 * time, 0);
 
-	rover.rotation.set(3*Math.PI/4 + 0.2 * Math.sin(time), -3*Math.PI/4, Math.PI/4 + 0.2 * Math.sin(time));
+	rover.rotation.set(3*Math.PI/4 + 0.3 * Math.sin(time) ** 2 + 0.1, -3*Math.PI/4, Math.PI/4 + 0.1 * Math.sin(time) + 0.05);
 
 	// Render Call
 
