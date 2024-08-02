@@ -5,7 +5,7 @@
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>John's Website</title>
-    <script type="module" crossorigin src="/assets/index-D8cwxZa4.js"></script>
+    <script type="module" crossorigin src="/assets/index-BF_LnXAR.js"></script>
     <link rel="stylesheet" crossorigin href="/assets/index-CHgFmEo_.css">
   </head>
   <body>
@@ -22,17 +22,17 @@
           <font color="#ffffff"> ROVER</font>
         </h2>
 
-        <h3>McDonalds</h3>
+        <h3>Object Detector</h3>
         <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+          As a part of <a href="https://urc.marssociety.org/">URC</a> the rover must be able to identify objects and localize them in 3D space. To accomplish this task, I spearheaded the development of a custom machine learning model. Inference is then accelerated using  <a href="https://developer.nvidia.com/cuda-toolkit">CUDA</a> and <a href="https://www.nvidia.com/en-us/data-center/tensor-cores/">tensor cores</a> to achieve frequency of 15 Hz on the Jetson Xavier. With the objects identified, they are localized in 3D space using a stereo 3D pointcloud. 
         </p>
-        <h3>Burger King</h3>
+        <h3>Object Detector URC 2024</h3>
         <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+		  <iframe width="560" height="315" src="https://www.youtube.com/embed/IvkKQNy5MkM?si=GzP2KuLfW_Z9Zq_Z" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
         </p>
-        <h3>Taco Bell</h3>
+        <h3>Lander Align</h3>
         <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+		  In the Equipment Servicing task the rover must be able to interact with a control panel. Due to the planar nature of the interface the approach can be automated. Using point cloud filtering based on normal vector the plane can be isolated and then modeled using RANSAC. Knowing the panel's location allows the rover to approach it using a <a href="https://hades.mech.northwestern.edu/images/7/7f/MR.pdf">nonlinear feedforward plus feedback control law</a>, putting the rover in the best possible position.
         </p>
 
       </section>
