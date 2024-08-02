@@ -53,7 +53,7 @@ var rover;
 loader.load('https://raw.githubusercontent.com/jbrhm/jbrhm.github.io/f3295a4b63b7c7707989c028444046bfb30deea3/meshes/rover.glb', (gltf) => {
 	rover = gltf.scene;
 	scene.add(rover);
-	rover.position.set(-90, 30, 20);
+	rover.position.set(-200,75, 10);
 	rover.rotation.set(Math.PI / 2 + 0.05, 0, 0);
 	rover.scale.set(7, 7, 7);
 }, undefined, (error) => {
