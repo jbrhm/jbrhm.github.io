@@ -42,7 +42,7 @@ var portfolioTitle;
 loader.load('https://raw.githubusercontent.com/jbrhm/jbrhm.github.io/e1d057416af091949c4be01412eead7bff658cf7/meshes/text.glb', (gltf) => {
 	portfolioTitle = gltf.scene;
 	scene.add(portfolioTitle);
-	portfolioTitle.position.set(-75, 20, 10);
+	portfolioTitle.position.set(-75, 25, 10);
 	portfolioTitle.rotation.set(Math.PI / 2 + 0.05, 0, 0);
 	portfolioTitle.scale.set(25, 1, 25);
 }, undefined, (error) => {
@@ -93,6 +93,7 @@ function animate() {
 	requestAnimationFrame( animate );
 
 	const t = Math.abs(document.body.getBoundingClientRect().top);
+	console.log(t)
 
 	// Camera Scroll Movement
 	if(Math.abs(t) < 2000){
@@ -121,7 +122,7 @@ function animate() {
 		rover.position.set(-17 + 0.5 * Math.sin(time), 70 + 1 * Math.sin(time), 21);
 	}
 
-	time += 0.01;
+	time += 0.0075;
 	grid.updateRandom(time);
 
 	// Mars Animation

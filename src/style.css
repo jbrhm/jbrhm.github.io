@@ -57,4 +57,6 @@ blockquote p {
 
 .left {
 	grid-column: 6 / 12;
+	font-family: elevon, sans-serif;
+	background-color: black;
 }
