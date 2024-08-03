@@ -99,13 +99,15 @@ function animate() {
 	if(Math.abs(t) < 2000){
 		camera.position.z = -1 * Math.abs(t/250) ** 2 + 75;
 		camera.position.y = 0.1 * 1.003 ** Math.abs(t) + 2;
-
 		camera.rotation.x = 0.4 * Math.abs(t/1000) ** 2 + Math.PI/20;
-	}else if(t > 2000 && t < 3000){
+	}else if(t > 2000 && t < 3700){
 		camera.position.z = -1 * Math.abs(2000/250) ** 2 + 75;
 		camera.position.y = 0.1 * 1.003 ** Math.abs(2000) + 2;
-
 		camera.rotation.x = 0.4 * Math.abs(2000/1000) ** 2 + Math.PI/20;
+	}else if(t > 3700 && t < 5700){
+		camera.position.x = 20 * Math.cos((t-3700)/444) - 20 + 0.4 * (2**2) + (Math.PI/20);
+		camera.position.y = 20 * Math.sin((t-3700)/444) + 0.1 * 1.003 ** Math.abs(2000) + 2;
+		camera.position.z = ((t-3700)/200) + 11;
 	}
 
 	// Mars Scroll Movement
