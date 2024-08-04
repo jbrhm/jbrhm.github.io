@@ -106,7 +106,7 @@ function animate() {
 		camera.rotation.x = 0.4 * Math.abs(2000/1000) ** 2 + Math.PI/20;
 	}else if(t > 3700 && t < 5700){
 		camera.position.x = 20 * Math.cos((t-3700)/444) - 20 + 0.4 * (2**2) + (Math.PI/20);
-		camera.position.y = ((t-3700)/2) + 0.1 * 1.003 ** Math.abs(2000) + 2;
+		camera.position.y = ((t-3700)/20) + 0.1 * 1.003 ** Math.abs(2000) + 2;
 		camera.position.z = 20 * Math.sin((t-3700)/444) + 11;
 		camera.rotation.x = 0.4 * Math.abs(2000/1000) ** 2 + Math.PI/20 + (0.4 * Math.abs(2000/1000) ** 2 + Math.PI/20) * (0 - (Math.min(500, (t-3700))/500));
 		camera.rotation.y = ((Math.max(500, t-3700) - 500) / 1500) * (Math.PI)
