@@ -80,7 +80,7 @@ const spinningCubeField = new SpinningCubeField(scene);
 
 // Init Lights //
 
-const pointLight = new THREE.PointLight( 0x8f2f06, 1000, 2000 );
+const pointLight = new THREE.PointLight( 0xffffff, 1000, 2000 );
 pointLight.position.set(0, 65, 30);
 
 const lightHelper =  new THREE.PointLightHelper(pointLight);

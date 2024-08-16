@@ -10,22 +10,23 @@ class SpinningCube {
 
     async init(scene) {
         try {
-            this.mesh = await this.loadMesh('https://raw.githubusercontent.com/jbrhm/jbrhm.github.io/2f55e0dbc928874955191ff10c79e3a0f395e1fb/meshes/cube.glb');
+            this.mesh = await this.loadMesh('https://raw.githubusercontent.com/jbrhm/jbrhm.github.io/e45218f23f4b3cd3e10393d65bf399cfaee0a8f5/meshes/cube.glb');
     
             // Add mesh to the scene
 			this.addToScene();
 
 			// Generate a Random Location
-			var [x, y, z] = Array(3).fill().map(() => THREE.MathUtils.randFloatSpread(200));
+			var [x, y, z] = Array(3).fill().map(() => THREE.MathUtils.randFloatSpread(400));
     		
 			// Make sure none of the Cubes are too close
-			const radius = -200;
+			const radius = 0;
 
-			while(x <= radius || y <= radius || z <= radius){
-				[x, y, z] = Array(3).fill().map(() => THREE.MathUtils.randFloatSpread(200));
+			while(Math.abs(x) <= radius || Math.abs(y) <= radius || Math.abs(z) <= radius){
+				[x, y, z] = Array(3).fill().map(() => THREE.MathUtils.randFloatSpread(400));
 			}
 
 			this.mesh.position.set(x, y, z);
+			this.mesh.scale.set(2,2,2);
 
             // Scale the Line
             this.setEndpoints(start, end);

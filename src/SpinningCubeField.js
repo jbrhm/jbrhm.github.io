@@ -8,7 +8,7 @@ class SpinningCubeField {
 		this.scene = scene;
 
 		// Load all of the cubes into an array
-		this.numCubes = 50;
+		this.numCubes = 200;
 		this.array = Array(this.numCubes);
 
 		for(let i = 0; i < this.numCubes; i++){
