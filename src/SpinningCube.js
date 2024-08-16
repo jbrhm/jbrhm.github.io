@@ -10,7 +10,7 @@ class SpinningCube {
 
     async init(scene) {
         try {
-            this.mesh = await this.loadMesh('https://raw.githubusercontent.com/jbrhm/jbrhm.github.io/c643b37e33c073a89dccee2e4fd9f02896e16d80/meshes/test.glb');
+            this.mesh = await this.loadMesh('/home/john/PersonalProjects/jbrhm.github.io/meshes/cube.glb');
     
             // Add mesh to the scene
 			this.addToScene();
