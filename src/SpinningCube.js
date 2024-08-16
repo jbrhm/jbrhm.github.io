@@ -19,7 +19,7 @@ class SpinningCube {
 			var [x, y, z] = Array(3).fill().map(() => THREE.MathUtils.randFloatSpread(400));
     		
 			// Make sure none of the Cubes are too close
-			const radius = 0;
+			const radius = 20;
 
 			while(Math.abs(x) <= radius || Math.abs(y) <= radius || Math.abs(z) <= radius){
 				[x, y, z] = Array(3).fill().map(() => THREE.MathUtils.randFloatSpread(400));

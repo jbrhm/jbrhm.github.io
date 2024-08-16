@@ -60,3 +60,9 @@ blockquote p {
 	font-family: elevon, sans-serif;
 	background-color: black;
 }
+
+.right {
+	grid-column: 0 / 6;
+	font-family: elevon, sans-serif;
+	background-color: black;
+}
