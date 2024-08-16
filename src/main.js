@@ -3,6 +3,7 @@ import './style.css'
 // My code
 import Line from './Line.js'
 import Grid from './Grid.js'
+import SpinningCubeField from './SpinningCubeField.js'
 
 import * as THREE from 'three';
 
@@ -75,6 +76,7 @@ scene.add(moon);
 moon.position.set(-200,75, 10);
 moon.scale.set(5, 5, 5);
 
+const spinningCubeField = new SpinningCubeField(scene);
 
 // Init Lights //
 
