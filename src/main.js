@@ -161,6 +161,10 @@ function animate() {
 
 	rover.rotation.set(3*Math.PI/4 + 0.3 * Math.sin(time) ** 2 + 0.1, -3*Math.PI/4, Math.PI/4 + 0.1 * Math.sin(time) + 0.05);
 
+	// Cube animations
+	
+	spinningCubeField.update(time);
+
 	// Render Call
 
 	renderer.render( scene, camera );

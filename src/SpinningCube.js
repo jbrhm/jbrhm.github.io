@@ -28,8 +28,9 @@ class SpinningCube {
 			this.mesh.position.set(x, y, z);
 			this.mesh.scale.set(2,2,2);
 
-            // Scale the Line
-            this.setEndpoints(start, end);
+			// Set up the animation values
+			[this.a0, this.a1, this.a2] = Array(3).fill().map(() => THREE.MathUtils.randFloatSpread(2));
+			[this.b0, this.b1, this.b2] = Array(3).fill().map(() => THREE.MathUtils.randFloatSpread(2));
         } catch (error) {
             console.error(error);
         }
@@ -45,6 +46,14 @@ class SpinningCube {
             });
         });
     }
+
+	update(time){
+		function rotationFunction(x){
+			return [Math.sin(x), Math.cos(x), 0.1 * x];
+		}
+
+		this.mesh.rotation.set(this.a0 * rotationFunction(time)[0] + this.b0, this.a1 * rotationFunction(time)[1] + this.b1, this.a2 * rotationFunction(time)[2] + this.b2)	
+	}
 
 	addToScene(){
 		this.scene.add(this.mesh);

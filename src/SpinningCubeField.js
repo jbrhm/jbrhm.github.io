@@ -18,7 +18,11 @@ class SpinningCubeField {
 		this.addToScene();
     }
 
-
+	update(time){
+		for(let i = 0; i < this.numCubes; i++){
+			this.array[i].update(time);
+		}
+	}
 
 	addToScene(){
 		for(let i = 0; i < this.numCubes; i++){
