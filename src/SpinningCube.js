@@ -26,7 +26,7 @@ class SpinningCube {
 			}
 
 			this.mesh.position.set(x, y, z);
-			this.mesh.scale.set(2,2,2);
+			this.mesh.scale.set(5,5,5);
 
 			// Set up the animation values
 			[this.a0, this.a1, this.a2] = Array(3).fill().map(() => THREE.MathUtils.randFloatSpread(2));
