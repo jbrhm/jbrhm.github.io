@@ -15,6 +15,7 @@ function coordinatesToAngle(x, y) {
 
 class Line {
     constructor(start, end, scene) { 
+		this.scene = scene;
         this.init(start, end, scene);
     }
 
@@ -23,7 +24,7 @@ class Line {
             this.mesh = await this.loadMesh('https://raw.githubusercontent.com/jbrhm/jbrhm.github.io/c643b37e33c073a89dccee2e4fd9f02896e16d80/meshes/test.glb');
     
             // Add mesh to the scene
-            scene.add(this.mesh);
+			this.addToScene();
     
             // Scale the Line
             this.setEndpoints(start, end);
@@ -42,6 +43,14 @@ class Line {
             });
         });
     }
+
+	addToScene(){
+		this.scene.add(this.mesh);
+	}
+
+	removeFromScene(){
+		this.scene.remove(this.mesh);
+	}
 
     setEndpoints(start, end){
         this.start = start;

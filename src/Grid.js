@@ -121,6 +121,18 @@ class Grid {
 		}
 	}
 
+	removeFromScene(){
+		for(let line of this.grid.values()) {
+			line.removeFromScene();
+		}
+	}
+
+	addToScene(){
+		for(let line of this.grid.values()) {
+			line.addToScene();
+		}
+	}
+
 	updateRandom(time){
 
 		function curve(x){
@@ -142,6 +154,8 @@ class Grid {
 			}
 		}	
 	}
+
+	
 }
 
 export default Grid

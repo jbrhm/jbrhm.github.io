@@ -95,6 +95,17 @@ function animate() {
 	const t = Math.abs(document.body.getBoundingClientRect().top);
 	console.log(t)
 
+	// Loaded Meshes
+	if(t < 3000){
+		grid.addToScene();
+		scene.add(moon);
+		scene.add(rover);
+	}else if(t > 4000 && t < 5700){
+		grid.removeFromScene();
+		scene.remove(moon);
+		scene.remove(rover);
+	}
+
 	// Camera Scroll Movement
 	if(Math.abs(t) < 2000){
 		camera.position.z = -1 * Math.abs(t/250) ** 2 + 75;
