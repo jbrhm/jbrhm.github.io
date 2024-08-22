@@ -108,7 +108,7 @@ function animate() {
 	console.log(t)
 
 	// Loaded Meshes
-	if(t < 3000){
+	if(t < 4000){
 		grid.addToScene();
 		scene.add(moon);
 		scene.add(rover);
