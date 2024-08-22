@@ -62,7 +62,7 @@ loader.load('https://raw.githubusercontent.com/jbrhm/jbrhm.github.io/f3295a4b63b
 });
 
 var spot;
-loader.load('meshes/spot.glb', (gltf) => {
+loader.load('https://raw.githubusercontent.com/jbrhm/jbrhm.github.io/678eb5c2d4d797cb5e8c28690d12907517383800/meshes/spot.glb', (gltf) => {
 	spot = gltf.scene;
 	scene.add(spot);
 	spot.scale.set(15, 15, 15);
