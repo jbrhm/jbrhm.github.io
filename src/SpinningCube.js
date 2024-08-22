@@ -16,13 +16,13 @@ class SpinningCube {
 			this.addToScene();
 
 			// Generate a Random Location
-			var [x, y, z] = Array(3).fill().map(() => THREE.MathUtils.randFloatSpread(400));
+			var [x, y, z] = Array(3).fill().map(() => THREE.MathUtils.randFloatSpread(200));
     		
 			// Make sure none of the Cubes are too close
 			const radius = 20;
 
 			while(Math.abs(x) <= radius || Math.abs(y) <= radius || Math.abs(z) <= radius){
-				[x, y, z] = Array(3).fill().map(() => THREE.MathUtils.randFloatSpread(400));
+				[x, y, z] = Array(3).fill().map(() => THREE.MathUtils.randFloatSpread(200));
 			}
 
 			this.mesh.position.set(x, y, z);

@@ -58,11 +58,15 @@ blockquote p {
 .left {
 	grid-column: 6 / 12;
 	font-family: elevon, sans-serif;
-	background-color: black;
+	background-color: #2e2e2e;
+	border: 2px solid gray;
+    border-radius: 10px;
 }
 
 .right {
 	grid-column: 0 / 6;
 	font-family: elevon, sans-serif;
-	background-color: black;
+	background-color: #2e2e2e;
+	border: 2px solid gray;
+    border-radius: 10px;
 }
