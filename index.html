@@ -36,7 +36,7 @@
 
       </section>
       <section class="blank2">
-        <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+        <br><br><br><br><br><br><br><br><br><br><br><br>
       </section>
 
 		
@@ -69,6 +69,31 @@
 			  <li><a href="https://github.com/jbrhm/Allocator">Memory Allocator</a>: An investigation into what <a href="https://www.gnu.org/software/libc/">libc</a> does under the hood when calling malloc and free.</li>
 			</ul>
         </p>
+      </section>
+
+      <section class="blank2">
+        <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+      </section>
+
+      <section class="left">
+        <h2>
+          <font color="#fcdb03">M</font>
+          <font color="#ffffff"> ROVER</font>
+        </h2>
+
+        <h3>Object Detector</h3>
+        <p>
+          As a part of <a href="https://urc.marssociety.org/">URC</a> the rover must be able to identify objects and localize them in 3D space. To accomplish this task, I spearheaded the development of a custom machine learning model. Inference is then accelerated using  <a href="https://developer.nvidia.com/cuda-toolkit">CUDA</a> and <a href="https://www.nvidia.com/en-us/data-center/tensor-cores/">tensor cores</a> to achieve frequency of 15 Hz on the Jetson Xavier. With the objects identified, they are localized in 3D space using a stereo 3D pointcloud. 
+        </p>
+        <h3>Object Detector URC 2024</h3>
+        <p>
+		  <iframe width="560" height="315" src="https://www.youtube.com/embed/IvkKQNy5MkM?si=GzP2KuLfW_Z9Zq_Z" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        </p>
+        <h3>Lander Align</h3>
+        <p>
+		  In the Equipment Servicing task the rover must be able to interact with a control panel. Due to the planar nature of the interface the approach can be automated. Using point cloud filtering based on normal vector the plane can be isolated and then modeled using RANSAC. Knowing the panel's location allows the rover to approach it using a <a href="https://hades.mech.northwestern.edu/images/7/7f/MR.pdf">nonlinear feedforward plus feedback control law</a>, putting the rover in the best possible position.
+        </p>
+
       </section>
 
       <blockquote>

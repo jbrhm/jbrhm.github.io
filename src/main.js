@@ -61,6 +61,16 @@ loader.load('https://raw.githubusercontent.com/jbrhm/jbrhm.github.io/f3295a4b63b
 	reject(error);
 });
 
+var spot;
+loader.load('meshes/spot.glb', (gltf) => {
+	spot = gltf.scene;
+	scene.add(spot);
+	spot.scale.set(15, 15, 15);
+	spot.position.set(-5, 135.98, 12.57);
+}, undefined, (error) => {
+	reject(error);
+});
+
 const moonTexture = new THREE.TextureLoader().load('https://raw.githubusercontent.com/jbrhm/jbrhm.github.io/1da3704178dc47d4c654b74a6d75faf27b03d3fa/resources/mars2.jpg');
 const normalTexture = new THREE.TextureLoader().load('https://raw.githubusercontent.com/jbrhm/jbrhm.github.io/685cbb8086e34b1fbba2c88cd50517b5ccc5e44f/resources/normal.jpg');
 
@@ -102,10 +112,12 @@ function animate() {
 		grid.addToScene();
 		scene.add(moon);
 		scene.add(rover);
+		scene.remove(spot);
 	}else if(t > 4000 && t < 5100){
 		grid.removeFromScene();
 		scene.remove(moon);
 		scene.remove(rover);
+		scene.add(spot);
 	}
 
 	// Camera Scroll Movement
@@ -123,6 +135,12 @@ function animate() {
 		camera.position.z = 20 * Math.sin((t-3100)/444) + 11;
 		camera.rotation.x = 0.4 * Math.abs(2000/1000) ** 2 + Math.PI/20 + (0.4 * Math.abs(2000/1000) ** 2 + Math.PI/20) * (0 - (Math.min(500, (t-3100))/500));
 		camera.rotation.y = ((Math.max(500, t-3100) - 500) / 1500) * (Math.PI)
+	}else if(t > 5100 && t < 6100){
+		camera.position.x = 20 * Math.cos((2000)/444) - 20 + 0.4 * (2**2) + (Math.PI/20);
+		camera.position.y = ((2000)/20) + 0.1 * 1.003 ** Math.abs(2000) + 2;
+		camera.position.z = 20 * Math.sin((2000)/444) + 11;
+		camera.rotation.x = 0.4 * Math.abs(2000/1000) ** 2 + Math.PI/20 + (0.4 * Math.abs(2000/1000) ** 2 + Math.PI/20) * (0 - (Math.min(500, (2000))/500));
+		camera.rotation.y = ((Math.max(500, 2000) - 500) / 1500) * (Math.PI)
 	}
 
 	// Mars Scroll Movement
@@ -160,6 +178,10 @@ function animate() {
 	rover.getObjectByName('back_left_wheel').rotation.set(0, 5 * time, 0);
 
 	rover.rotation.set(3*Math.PI/4 + 0.3 * Math.sin(time) ** 2 + 0.1, -3*Math.PI/4, Math.PI/4 + 0.1 * Math.sin(time) + 0.05);
+
+	// Spot Animation
+	
+	spot.rotation.set(0, time, 0);
 
 	// Cube animations
 	
