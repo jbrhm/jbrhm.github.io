@@ -30,7 +30,7 @@ renderer.render( scene, camera );
 
 // Helpers //
 const axesHelper = new THREE.AxesHelper(5);
-scene.add(axesHelper);
+// scene.add(axesHelper);
 
 // Init Geometery //
 
